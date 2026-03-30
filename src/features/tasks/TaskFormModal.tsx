@@ -73,7 +73,7 @@ export default function TaskFormModal({ open, onClose, editTask }: TaskFormModal
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Status</Label>
-              <Select value={status} onValueChange={setStatus}>
+              <Select value={status} onValueChange={(v) => setStatus(v as any)}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {TASK_STATUSES.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
