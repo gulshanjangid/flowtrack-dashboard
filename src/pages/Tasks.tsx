@@ -5,7 +5,8 @@ import { LoadingSpinner, EmptyState } from "@/components/StatusComponents";
 import { StatusBadge, PriorityBadge } from "@/components/Badges";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Trash2, Pencil } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Plus, Trash2, Pencil, Search } from "lucide-react";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import TaskFormModal from "@/features/tasks/TaskFormModal";
@@ -21,15 +22,20 @@ export default function Tasks() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterPriority, setFilterPriority] = useState("all");
   const [filterProject, setFilterProject] = useState("all");
+  const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
     return tasks.filter((t) => {
       if (filterStatus !== "all" && t.status !== filterStatus) return false;
       if (filterPriority !== "all" && t.priority !== filterPriority) return false;
       if (filterProject !== "all" && t.projectId !== filterProject) return false;
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        if (!t.title.toLowerCase().includes(q) && !t.description.toLowerCase().includes(q) && !t.assignedUser.toLowerCase().includes(q)) return false;
+      }
       return true;
     });
-  }, [tasks, filterStatus, filterPriority, filterProject]);
+  }, [tasks, filterStatus, filterPriority, filterProject, search]);
 
   const handleDelete = async (id: string) => {
     try {
@@ -46,6 +52,10 @@ export default function Tasks() {
       <div className="p-6 animate-fade-in">
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-3 mb-6">
+          <div className="relative flex-1 min-w-[200px] max-w-xs">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search tasks…" className="pl-9" />
+          </div>
           <Select value={filterStatus} onValueChange={setFilterStatus}>
             <SelectTrigger className="w-36"><SelectValue placeholder="Status" /></SelectTrigger>
             <SelectContent>
