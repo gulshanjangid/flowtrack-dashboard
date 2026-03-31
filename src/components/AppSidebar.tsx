@@ -1,22 +1,40 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { LayoutDashboard, FolderKanban, CheckSquare, Users, Menu, X } from "lucide-react";
+import { LayoutDashboard, FolderKanban, CheckSquare, Users, Menu, X, Kanban, Users2, Activity } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
+import { hasPermission } from "@/utils/permissions";
+import type { Permission } from "@/utils/permissions";
 
-const links = [
+interface SidebarLink {
+  to: string;
+  label: string;
+  icon: React.ElementType;
+  permission?: Permission;
+}
+
+const links: SidebarLink[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/tasks", label: "Tasks", icon: CheckSquare },
-  { to: "/users", label: "Users", icon: Users },
+  { to: "/workflows", label: "Workflows", icon: Kanban },
+  { to: "/teams", label: "Teams", icon: Users2, permission: "viewTeamData" },
+  { to: "/users", label: "Users", icon: Users, permission: "manageUsers" },
+  { to: "/activity", label: "Activity Logs", icon: Activity, permission: "viewActivityLogs" },
 ];
 
 export default function AppSidebar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
+
+  const visibleLinks = links.filter((l) => {
+    if (!l.permission) return true;
+    return user && hasPermission(user.role, l.permission);
+  });
 
   return (
     <>
-      {/* Mobile toggle */}
       <button
         onClick={() => setOpen(!open)}
         className="fixed top-4 left-4 z-50 md:hidden rounded-md p-2 bg-sidebar text-sidebar-foreground"
@@ -25,7 +43,6 @@ export default function AppSidebar() {
         {open ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      {/* Overlay */}
       {open && <div className="fixed inset-0 z-30 bg-foreground/20 md:hidden" onClick={() => setOpen(false)} />}
 
       <aside
@@ -42,7 +59,7 @@ export default function AppSidebar() {
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">
-          {links.map((l) => {
+          {visibleLinks.map((l) => {
             const isActive = l.to === "/" ? location.pathname === "/" : location.pathname.startsWith(l.to);
             return (
               <NavLink
@@ -64,6 +81,11 @@ export default function AppSidebar() {
         </nav>
 
         <div className="px-4 py-4 border-t border-sidebar-border">
+          {user && (
+            <p className="text-xs text-sidebar-foreground/70 mb-1">
+              Signed in as <span className="font-medium text-sidebar-accent-foreground capitalize">{user.role}</span>
+            </p>
+          )}
           <p className="text-xs text-sidebar-foreground/50">FlowTrack v1.0</p>
         </div>
       </aside>
