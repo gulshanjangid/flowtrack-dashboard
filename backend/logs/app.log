@@ -1,0 +1,88 @@
+2026-04-01 03:27:21 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-01 03:27:21 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-04-01 03:27:21 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:27:22 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:27:22 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:31:11 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\AppData\\Roaming\\Python\\Python311\\site-packages\\jwt\\api_jwt.py', reloading
+2026-04-01 03:31:12 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:31:12 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:31:12 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:37:42 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\models\\task.py', reloading
+2026-04-01 03:37:42 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:37:43 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:37:43 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:37:45 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\models\\user.py', reloading
+2026-04-01 03:37:45 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:37:46 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:37:46 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:37:48 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\schemas\\task.py', reloading
+2026-04-01 03:37:48 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:37:48 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:37:48 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:37:52 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\services\\task.py', reloading
+2026-04-01 03:37:53 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:37:53 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:37:53 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:37:57 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\routes\\tasks.py', reloading
+2026-04-01 03:37:58 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:37:58 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:37:58 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:00 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\seed.py', reloading
+2026-04-01 03:38:00 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:01 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:01 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:05 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\migrations\\versions\\38509dd24634_add_user_id_to_tasks.py', reloading
+2026-04-01 03:38:05 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:05 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:05 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:12 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\AppData\\Roaming\\Python\\Python311\\site-packages\\alembic\\command.py', reloading
+2026-04-01 03:38:12 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:13 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:13 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:32 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\migrations\\versions\\38509dd24634_add_user_id_to_tasks.py', reloading
+2026-04-01 03:38:33 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:33 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:33 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:36 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\migrations\\versions\\cbc5a4285aca_add_user_id_to_tasks.py', reloading
+2026-04-01 03:38:36 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:37 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:37 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:41 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\migrations\\versions\\cbc5a4285aca_add_user_id_to_tasks.py', reloading
+2026-04-01 03:38:41 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:41 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:41 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:43 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\migrations\\versions\\cbc5a4285aca_add_user_id_to_tasks.py', reloading
+2026-04-01 03:38:43 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:44 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:44 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:38:52 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\AppData\\Roaming\\Python\\Python311\\site-packages\\sqlalchemy\\engine\\base.py', reloading
+2026-04-01 03:38:52 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:38:53 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:38:53 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:39:14 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\seed.py', reloading
+2026-04-01 03:39:14 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:39:15 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:39:15 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:41:45 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\utils\\auth.py', reloading
+2026-04-01 03:41:46 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:41:46 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:41:46 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:42:21 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\routes\\users.py', reloading
+2026-04-01 03:42:21 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:42:22 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:42:22 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:45:13 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\routes\\workflows.py', reloading
+2026-04-01 03:45:13 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:45:13 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:45:13 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:45:14 - INFO - werkzeug -  * Detected change in 'C:\\Users\\HP\\Desktop\\flowtrack\\backend\\app\\services\\workflow.py', reloading
+2026-04-01 03:45:14 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:45:15 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:45:15 - INFO - werkzeug -  * Debugger PIN: 131-919-785
+2026-04-01 03:45:59 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-01 03:45:59 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2026-04-01 03:45:59 - INFO - werkzeug -  * Restarting with watchdog (windowsapi)
+2026-04-01 03:46:00 - WARNING - werkzeug -  * Debugger is active!
+2026-04-01 03:46:00 - INFO - werkzeug -  * Debugger PIN: 131-919-785
