@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "@/utils/constants";
 import { toast } from "sonner";
 
 export type UserRole = "admin" | "manager" | "member";
@@ -23,13 +25,6 @@ interface AuthState {
 
 const AuthContext = createContext<AuthState | null>(null);
 
-// Mock users for demo
-const MOCK_ACCOUNTS: (AuthUser & { password: string })[] = [
-  { id: "u1", name: "Alex Rivera", email: "admin@flowtrack.io", password: "admin123", role: "admin", avatar: "" },
-  { id: "u4", name: "Priya Patel", email: "manager@flowtrack.io", password: "manager123", role: "manager", avatar: "" },
-  { id: "u2", name: "Sarah Chen", email: "member@flowtrack.io", password: "member123", role: "member", avatar: "" },
-];
-
 const STORAGE_KEY = "flowtrack_auth";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -46,12 +41,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (parsed.token && parsed.user) {
           setToken(parsed.token);
           setUser(parsed.user);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${parsed.token}`;
         }
       }
-    } catch {
-      localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      console.error("Failed to load auth state:", error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   const persist = (u: AuthUser, t: string) => {
@@ -61,39 +58,51 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const login = useCallback(async (email: string, password: string) => {
-    // Simulate API delay
-    await new Promise((r) => setTimeout(r, 600));
-    const account = MOCK_ACCOUNTS.find((a) => a.email === email && a.password === password);
-    if (!account) throw new Error("Invalid email or password");
-    const { password: _, ...userData } = account;
-    const mockToken = `mock-jwt-${Date.now()}`;
-    persist(userData, mockToken);
-    toast.success(`Welcome back, ${userData.name}!`);
+    try {
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
+      const { access_token, refresh_token } = response.data;
+      setToken(access_token);
+
+      // Set authorization header for subsequent requests
+      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+
+      // Fetch current user data
+      const userResponse = await axios.get(`${API_BASE_URL}/users/me`);
+      const userData = userResponse.data;
+
+      const authUser: AuthUser = {
+        id: userData.id.toString(),
+        name: userData.name,
+        email: userData.email,
+        role: userData.role.toLowerCase() as UserRole,
+        avatar: "" // Add avatar support later
+      };
+
+      setUser(authUser);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ token: access_token, user: authUser }));
+      toast.success("Login successful");
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || "Login failed");
+      throw error;
+    }
   }, []);
 
   const register = useCallback(async (name: string, email: string, password: string) => {
-    await new Promise((r) => setTimeout(r, 600));
-    if (MOCK_ACCOUNTS.some((a) => a.email === email)) {
-      throw new Error("Email already registered");
+    try {
+      await axios.post(`${API_BASE_URL}/auth/register`, { name, email, password });
+      toast.success("Registration successful");
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || "Registration failed");
+      throw error;
     }
-    const newUser: AuthUser = {
-      id: `u${Date.now()}`,
-      name,
-      email,
-      role: "member",
-      avatar: "",
-    };
-    const mockToken = `mock-jwt-${Date.now()}`;
-    MOCK_ACCOUNTS.push({ ...newUser, password });
-    persist(newUser, mockToken);
-    toast.success("Account created successfully!");
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY);
     setUser(null);
     setToken(null);
-    toast.info("Logged out");
+    delete axios.defaults.headers.common['Authorization'];
+    localStorage.removeItem(STORAGE_KEY);
+    toast.success("Logged out");
   }, []);
 
   return (

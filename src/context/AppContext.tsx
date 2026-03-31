@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import type { Project, Task, User } from "@/utils/constants";
 import { api } from "@/api/axiosClient";
+import { useAuth } from "@/context/AuthContext";
 
 interface AppState {
   projects: Project[];
@@ -21,6 +22,7 @@ interface AppState {
 const AppContext = createContext<AppState | null>(null);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth();
   const [projects, setProjects] = useState<Project[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -82,10 +84,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const clearError = useCallback(() => setError(null), []);
 
   useEffect(() => {
-    fetchProjects();
-    fetchTasks();
-    fetchUsers();
-  }, []);
+    if (isAuthenticated) {
+      fetchProjects();
+      fetchTasks();
+      fetchUsers();
+    }
+  }, [isAuthenticated, fetchProjects, fetchTasks, fetchUsers]);
 
   return (
     <AppContext.Provider value={{ projects, tasks, users, loading, error, fetchProjects, fetchTasks, fetchUsers, addProject, addTask, updateTask, deleteTask, clearError }}>
