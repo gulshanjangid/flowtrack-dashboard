@@ -23,13 +23,12 @@ export default function UsersPage() {
   const [search, setSearch] = useState("");
 
   // Local state for role/enabled management (mock)
-  const [managedUsers, setManagedUsers] = useState<ManagedUser[]>(() =>
-    users.map((u) => ({ ...u, enabled: true }))
-  );
+  const [managedUsers, setManagedUsers] = useState<ManagedUser[]>([]);
 
-  // Sync if users change
-  useMemo(() => {
+  // Sync managed users when users from context change
+  useEffect(() => {
     setManagedUsers((prev) => {
+      if (prev.length === 0) return users.map((u) => ({ ...u, enabled: true }));
       const existingIds = new Set(prev.map((u) => u.id));
       const newUsers = users.filter((u) => !existingIds.has(u.id)).map((u) => ({ ...u, enabled: true }));
       return [...prev.map((p) => {
